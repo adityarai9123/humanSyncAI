@@ -1,8 +1,4 @@
-import {
-  AbsoluteFill,
-  Composition,
-  Sequence,
-} from "remotion";
+import { AbsoluteFill, Composition, Sequence } from "remotion";
 
 import { Scene01Intro } from "./scenes/Scene01Intro";
 import { Scene02Systems } from "./scenes/Scene02Systems";
@@ -11,10 +7,8 @@ import { Scene04Collaboration } from "./scenes/Scene04Collaboration";
 import { Scene05Workflow } from "./scenes/Scene05Workflow";
 import { Scene06Outro } from "./scenes/Scene06Outro";
 
-import { SceneFade } from "./components/SceneFade";
 
 import { HumanSyncProps } from "./types";
-
 
 export const MyComposition = () => {
   return (
@@ -40,37 +34,27 @@ export const MyComponent: React.FC<HumanSyncProps> = (props) => {
 
       {/* Scene 2 */}
       <Sequence from={175} durationInFrames={115}>
-        <SceneFade duration={8}>
-          <Scene02Systems />
-        </SceneFade>
+        <Scene02Systems systems={props.systems} />
       </Sequence>
 
       {/* Scene 3 */}
       <Sequence from={290} durationInFrames={185}>
-        <SceneFade duration={8}>
-          <Scene03Workspace />
-        </SceneFade>
+        <Scene03Workspace />
       </Sequence>
 
       {/* Scene 4 */}
       <Sequence from={475} durationInFrames={125}>
-        <SceneFade duration={8}>
-          <Scene04Collaboration />
-        </SceneFade>
+        <Scene04Collaboration />
       </Sequence>
 
       {/* Scene 5 */}
       <Sequence from={600} durationInFrames={125}>
-        <SceneFade duration={8}>
-          <Scene05Workflow />
-        </SceneFade>
+        <Scene05Workflow />
       </Sequence>
 
       {/* Scene 6 */}
       <Sequence from={725} durationInFrames={25}>
-        <SceneFade duration={8}>
-          <Scene06Outro />
-        </SceneFade>
+        <Scene06Outro />
       </Sequence>
     </AbsoluteFill>
   );
@@ -83,24 +67,13 @@ const defaultProps: HumanSyncProps = {
   intro: {
     title: "Modern teams",
     highlight: "move fast",
-    subtitle: [
-      "but workflow still",
-      "feels disconnected",
-    ],
+    subtitle: ["but workflow still", "feels disconnected"],
   },
 
   systems: {
     title: "Everything",
-    highlightedLines: [
-      "scattered across",
-      "different systems",
-    ],
-    tags: [
-      "Meetings",
-      "Tasks",
-      "Communication",
-      "Operations",
-    ],
+    highlightedLines: ["scattered across", "different systems"],
+    tags: ["Meetings", "Tasks", "Communication", "Operations"],
   },
 
   workspace: {
@@ -111,18 +84,11 @@ const defaultProps: HumanSyncProps = {
 
   collaboration: {
     title: "From smart insights to seamless collaborations",
-    highlightedWords: [
-      "smart insights",
-      "collaborations",
-    ],
+    highlightedWords: ["smart insights", "collaborations"],
   },
 
   workflow: {
-    headline: [
-      "Faster workflow",
-      "Better clarity",
-      "Smarter teamwork",
-    ],
+    headline: ["Faster workflow", "Better clarity", "Smarter teamwork"],
     metrics: [
       {
         label: "Time Saved",

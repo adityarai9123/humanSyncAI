@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 
 import { Background } from "../components/Background";
+import { HumanSyncProps } from "../types";
 
 type FloatingIconProps = {
   left: number;
@@ -22,15 +23,10 @@ const FloatingIcon: React.FC<FloatingIconProps> = ({
 }) => {
   const frame = useCurrentFrame();
 
-  const progress = interpolate(
-    frame,
-    [startFrame, startFrame + 18],
-    [0, 1],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
+  const progress = interpolate(frame, [startFrame, startFrame + 18], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
   const opacity = progress;
 
@@ -38,8 +34,10 @@ const FloatingIcon: React.FC<FloatingIconProps> = ({
 
   const y = interpolate(progress, [0, 1], [25, 0]);
 
-  const float = Math.sin((frame - startFrame) / 15) * 3;
-
+const float =
+  frame >= startFrame
+    ? Math.sin((frame - startFrame) / 15) * 3
+    : 0;
   return (
     <div
       style={{
@@ -84,25 +82,15 @@ const FloatingIcon: React.FC<FloatingIconProps> = ({
 const CentralLogo: React.FC = () => {
   const frame = useCurrentFrame();
 
-  const scale = interpolate(
-    frame,
-    [15, 35],
-    [0.7, 1],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
+  const scale = interpolate(frame, [15, 35], [0.7, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
-  const opacity = interpolate(
-    frame,
-    [15, 30],
-    [0, 1],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
+  const opacity = interpolate(frame, [15, 30], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
   return (
     <div
@@ -118,8 +106,7 @@ const CentralLogo: React.FC = () => {
         background:
           "radial-gradient(circle, #efd9ff 0%, #e5b7ff 55%, #d59cff 100%)",
         border: "2px solid rgba(255,255,255,0.8)",
-        boxShadow:
-          "0 20px 50px rgba(100, 40, 160, 0.18)",
+        boxShadow: "0 20px 50px rgba(100, 40, 160, 0.18)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -174,28 +161,20 @@ const CentralLogo: React.FC = () => {
   );
 };
 
-export const Scene02Systems: React.FC = () => {
+export const Scene02Systems: React.FC<{
+  systems: HumanSyncProps["systems"];
+}> = ({ systems }) => {
   const frame = useCurrentFrame();
 
-  const titleOpacity = interpolate(
-    frame,
-    [0, 15],
-    [0, 1],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
+  const titleOpacity = interpolate(frame, [0, 15], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
-  const titleY = interpolate(
-    frame,
-    [0, 15],
-    [20, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
+  const titleY = interpolate(frame, [0, 15], [20, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
   return (
     <AbsoluteFill>
@@ -217,14 +196,14 @@ export const Scene02Systems: React.FC = () => {
           color: "#111",
         }}
       >
-        <div>Everything</div>
+        <div>{systems.title}</div>
 
         <div
           style={{
             color: "#4779e8",
           }}
         >
-          scattered across
+          {systems.highlightedLines[0]}
         </div>
 
         <div
@@ -232,7 +211,7 @@ export const Scene02Systems: React.FC = () => {
             color: "#4779e8",
           }}
         >
-          different systems
+          {systems.highlightedLines[1]}
         </div>
       </div>
 
@@ -250,24 +229,22 @@ export const Scene02Systems: React.FC = () => {
           fontFamily: "Arial, Helvetica, sans-serif",
         }}
       >
-        {["Meetings", "Tasks", "Communication", "Operations"].map(
-          (label) => (
-            <div
-              key={label}
-              style={{
-                padding: "4px 9px",
-                borderRadius: 20,
-                background: "rgba(255,255,255,0.65)",
-                border: "1px solid rgba(130,90,160,0.12)",
-                fontSize: 8,
-                color: "#555",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {label}
-            </div>
-          ),
-        )}
+        {systems.tags.map((label) => (
+          <div
+            key={label}
+            style={{
+              padding: "4px 9px",
+              borderRadius: 20,
+              background: "rgba(255,255,255,0.65)",
+              border: "1px solid rgba(130,90,160,0.12)",
+              fontSize: 8,
+              color: "#555",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {label}
+          </div>
+        ))}
       </div>
 
       {/* Orbit rings */}
