@@ -6,6 +6,7 @@ import { AnimatedText } from "../components/AnimatedText";
 import { GlassCard } from "../components/GlassCard";
 
 import { Logo } from "../components/Logo";
+import { HumanSyncProps } from "../types";
 
 const Avatar: React.FC<{ letter: string }> = ({ letter }) => {
   return (
@@ -30,7 +31,9 @@ const Avatar: React.FC<{ letter: string }> = ({ letter }) => {
   );
 };
 
-export const Scene01Intro: React.FC = () => {
+export const Scene01Intro: React.FC<{
+  intro: HumanSyncProps["intro"];
+}> = ({ intro }) => {
   return (
     <AbsoluteFill>
       <Background />
@@ -42,7 +45,7 @@ export const Scene01Intro: React.FC = () => {
       ========================== */}
 
       <AnimatedText
-        text="Modern teams"
+        text={intro.title}
         startFrame={5}
         fontSize={40}
         fontWeight={500}
@@ -51,7 +54,7 @@ export const Scene01Intro: React.FC = () => {
       />
 
       <AnimatedText
-        text="move fast"
+        text={intro.highlight}
         startFrame={12}
         fontSize={48}
         fontWeight={600}
@@ -61,7 +64,7 @@ export const Scene01Intro: React.FC = () => {
       />
 
       <AnimatedText
-        text="but workflow still"
+        text={intro.subtitle[0]}
         startFrame={20}
         fontSize={25}
         fontWeight={400}
@@ -72,7 +75,7 @@ export const Scene01Intro: React.FC = () => {
       />
 
       <AnimatedText
-        text="feels disconnected"
+        text={intro.subtitle[1]}
         startFrame={27}
         fontSize={25}
         fontWeight={400}

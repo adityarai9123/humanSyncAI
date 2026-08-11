@@ -35,7 +35,7 @@ export const MyComponent: React.FC<HumanSyncProps> = (props) => {
     <AbsoluteFill>
       {/* Scene 1 */}
       <Sequence from={0} durationInFrames={175}>
-        <Scene01Intro />
+        <Scene01Intro intro={props.intro} />
       </Sequence>
 
       {/* Scene 2 */}
