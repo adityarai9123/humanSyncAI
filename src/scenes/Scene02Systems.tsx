@@ -3,6 +3,7 @@ import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 
 import { Background } from "../components/Background";
 import { HumanSyncProps } from "../types";
+import { HumanSyncLogo } from "../components/HumanSyncLogo";
 
 type FloatingIconProps = {
   left: number;
@@ -112,51 +113,7 @@ const CentralLogo: React.FC = () => {
         justifyContent: "center",
       }}
     >
-      <div
-        style={{
-          width: 78,
-          height: 55,
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            left: 4,
-            top: 14,
-            width: 30,
-            height: 30,
-            borderRadius: 10,
-            background: "#6425d8",
-            transform: "rotate(-15deg)",
-          }}
-        />
-
-        <div
-          style={{
-            position: "absolute",
-            right: 4,
-            top: 14,
-            width: 30,
-            height: 30,
-            borderRadius: 10,
-            background: "#3477e8",
-            transform: "rotate(15deg)",
-          }}
-        />
-
-        <div
-          style={{
-            position: "absolute",
-            left: 25,
-            top: 27,
-            width: 28,
-            height: 10,
-            borderRadius: 10,
-            background: "#6425d8",
-          }}
-        />
-      </div>
+      <HumanSyncLogo size={58} />
     </div>
   );
 };

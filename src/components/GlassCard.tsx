@@ -67,16 +67,17 @@ export const GlassCard: React.FC<GlassCardProps> = ({
 
         borderRadius: 18,
 
-        background: "rgba(255, 255, 255, 0.78)",
+        background: "rgba(255, 255, 255, 0.72)",
 
-        border: "1px solid rgba(255, 255, 255, 0.85)",
+        border: "1px solid rgba(255, 255, 255, 0.75)",
 
         boxShadow: `
-          0 18px 45px rgba(90, 45, 130, 0.14),
-          0 4px 12px rgba(90, 45, 130, 0.08)
+          0 18px 45px rgba(70, 35, 110, 0.16),
+          0 4px 12px rgba(70, 35, 110, 0.08)
         `,
 
-        backdropFilter: "blur(12px)",
+        backdropFilter: "blur(18px)",
+        WebkitBackdropFilter: "blur(18px)",
 
         overflow: "hidden",
 

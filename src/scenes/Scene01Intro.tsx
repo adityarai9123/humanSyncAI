@@ -5,7 +5,7 @@ import { Background } from "../components/Background";
 import { AnimatedText } from "../components/AnimatedText";
 import { GlassCard } from "../components/GlassCard";
 
-import { Logo } from "../components/Logo";
+import { HumanSyncLogo } from "../components/HumanSyncLogo";
 import { HumanSyncProps } from "../types";
 
 const Avatar: React.FC<{ letter: string }> = ({ letter }) => {
@@ -38,7 +38,7 @@ export const Scene01Intro: React.FC<{
     <AbsoluteFill>
       <Background />
 
-      <Logo size={36} />
+      <HumanSyncLogo size={36} />
 
       {/* =========================
           LEFT SIDE — HEADLINE
