@@ -1,27 +1,35 @@
-// export type VideoProps = {
-//   brandName: string;
+export type HumanSyncProps = {
+  brandName: string;
+  brandSuffix: string;
 
-//   intro: {
-//     headline: string;
-//     highlight: string;
-//     subheadline: string;
-//   };
+  intro: {
+    title: string;
+    highlight: string;
+    subtitle: string[];
+  };
 
-//   team: {
-//     members: {
-//       name: string;
-//       role: string;
-//     }[];
-//   };
+  systems: {
+    title: string;
+    highlightedLines: string[];
+    tags: string[];
+  };
 
-//   metrics: {
-//     timeSaved: string;
-//     efficiency: string;
-//     satisfaction: string;
-//   };
+  workspace: {
+    title: string;
+    description: string;
+  };
 
-//   workflow: {
-//     title: string;
-//     subtitle: string;
-//   }[];
-// };
+  collaboration: {
+    title: string;
+    highlightedWords: string[];
+  };
+
+  workflow: {
+    headline: string[];
+    metrics: {
+      label: string;
+      value: string;
+      suffix?: string;
+    }[];
+  };
+};

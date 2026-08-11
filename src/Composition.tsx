@@ -1,6 +1,5 @@
 import {
   AbsoluteFill,
-  CalculateMetadataFunction,
   Composition,
   Sequence,
 } from "remotion";
@@ -14,11 +13,8 @@ import { Scene06Outro } from "./scenes/Scene06Outro";
 
 import { SceneFade } from "./components/SceneFade";
 
-type Props = {};
+import { HumanSyncProps } from "./types";
 
-const calculateMetadata: CalculateMetadataFunction<Props> = () => {
-  return {};
-};
 
 export const MyComposition = () => {
   return (
@@ -29,12 +25,12 @@ export const MyComposition = () => {
       fps={25}
       width={736}
       height={414}
-      calculateMetadata={calculateMetadata}
+      defaultProps={defaultProps}
     />
   );
 };
 
-export const MyComponent: React.FC<Props> = () => {
+export const MyComponent: React.FC<HumanSyncProps> = (props) => {
   return (
     <AbsoluteFill>
       {/* Scene 1 */}
@@ -78,4 +74,69 @@ export const MyComponent: React.FC<Props> = () => {
       </Sequence>
     </AbsoluteFill>
   );
+};
+
+const defaultProps: HumanSyncProps = {
+  brandName: "HumanSync",
+  brandSuffix: "AI",
+
+  intro: {
+    title: "Modern teams",
+    highlight: "move fast",
+    subtitle: [
+      "but workflow still",
+      "feels disconnected",
+    ],
+  },
+
+  systems: {
+    title: "Everything",
+    highlightedLines: [
+      "scattered across",
+      "different systems",
+    ],
+    tags: [
+      "Meetings",
+      "Tasks",
+      "Communication",
+      "Operations",
+    ],
+  },
+
+  workspace: {
+    title: "Changes that",
+    description:
+      "one intelligent workspace built to connect teams, workflows, and productivity in real time.",
+  },
+
+  collaboration: {
+    title: "From smart insights to seamless collaborations",
+    highlightedWords: [
+      "smart insights",
+      "collaborations",
+    ],
+  },
+
+  workflow: {
+    headline: [
+      "Faster workflow",
+      "Better clarity",
+      "Smarter teamwork",
+    ],
+    metrics: [
+      {
+        label: "Time Saved",
+        value: "120+",
+        suffix: "hrs/month",
+      },
+      {
+        label: "Efficiency",
+        value: "35%",
+      },
+      {
+        label: "Team Satisfaction",
+        value: "98%",
+      },
+    ],
+  },
 };
