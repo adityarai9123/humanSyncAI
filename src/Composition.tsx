@@ -7,7 +7,6 @@ import { Scene04Collaboration } from "./scenes/Scene04Collaboration";
 import { Scene05Workflow } from "./scenes/Scene05Workflow";
 import { Scene06Outro } from "./scenes/Scene06Outro";
 
-
 import { HumanSyncProps } from "./types";
 
 export const MyComposition = () => {
@@ -39,7 +38,7 @@ export const MyComponent: React.FC<HumanSyncProps> = (props) => {
 
       {/* Scene 3 */}
       <Sequence from={290} durationInFrames={185}>
-        <Scene03Workspace />
+        <Scene03Workspace workspace={props.workspace} />
       </Sequence>
 
       {/* Scene 4 */}
@@ -80,6 +79,44 @@ const defaultProps: HumanSyncProps = {
     title: "Changes that",
     description:
       "one intelligent workspace built to connect teams, workflows, and productivity in real time.",
+
+    teamMembers: [
+      {
+        name: "Olivia Rhye",
+        role: "Product Manager",
+      },
+      {
+        name: "Arun Mitchell",
+        role: "Business Partner",
+      },
+      {
+        name: "Sophie Hale",
+        role: "Project Manager",
+      },
+    ],
+
+    workflowSteps: [
+      {
+        label: "Request",
+        active: true,
+      },
+      {
+        label: "In Review",
+      },
+      {
+        label: "Approved",
+      },
+      {
+        label: "Completed",
+        active: true,
+      },
+    ],
+
+    productivity: {
+      efficiency: "+15%",
+      completion: "92%",
+      responseTime: "1.6 h",
+    },
   },
 
   collaboration: {

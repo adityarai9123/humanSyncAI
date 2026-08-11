@@ -1,12 +1,9 @@
 import React from "react";
-import {
-  AbsoluteFill,
-  interpolate,
-  useCurrentFrame,
-} from "remotion";
+import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 
 import { Background } from "../components/Background";
 import { GlassCard } from "../components/GlassCard";
+import { HumanSyncProps } from "../types";
 
 const MiniBrandMark: React.FC = () => {
   return (
@@ -88,8 +85,7 @@ const UserRow: React.FC<{
           width: 23,
           height: 23,
           borderRadius: "50%",
-          background:
-            "linear-gradient(135deg, #d5c3e8, #9d7ad1)",
+          background: "linear-gradient(135deg, #d5c3e8, #9d7ad1)",
           marginRight: 8,
           display: "flex",
           alignItems: "center",
@@ -143,7 +139,9 @@ const UserRow: React.FC<{
   );
 };
 
-const TeamConnectedCard: React.FC = () => {
+const TeamConnectedCard: React.FC<{
+  members: HumanSyncProps["workspace"]["teamMembers"];
+}> = ({ members }) => {
   return (
     <GlassCard
       startFrame={90}
@@ -170,20 +168,9 @@ const TeamConnectedCard: React.FC = () => {
           👥 Team Connected
         </div>
 
-        <UserRow
-          name="Olivia Rhye"
-          role="Product Manager"
-        />
-
-        <UserRow
-          name="Arun Mitchell"
-          role="Business Partner"
-        />
-
-        <UserRow
-          name="Sophie Hale"
-          role="Project Manager"
-        />
+        {members.map((member) => (
+          <UserRow key={member.name} name={member.name} role={member.role} />
+        ))}
 
         <div
           style={{
@@ -217,9 +204,7 @@ const WorkflowStep: React.FC<{
           width: 22,
           height: 22,
           borderRadius: 7,
-          background: active
-            ? "#e8dcff"
-            : "rgba(120,80,180,0.08)",
+          background: active ? "#e8dcff" : "rgba(120,80,180,0.08)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -245,7 +230,9 @@ const WorkflowStep: React.FC<{
   );
 };
 
-const WorkflowCard: React.FC = () => {
+const WorkflowCard: React.FC<{
+  steps: HumanSyncProps["workspace"]["workflowSteps"];
+}> = ({ steps }) => {
   return (
     <GlassCard
       startFrame={112}
@@ -278,50 +265,22 @@ const WorkflowCard: React.FC = () => {
             alignItems: "flex-start",
           }}
         >
-          <WorkflowStep
-            label="Request"
-            active
-          />
+          {steps.map((step, index) => (
+            <React.Fragment key={step.label}>
+              <WorkflowStep label={step.label} active={step.active} />
 
-          <div
-            style={{
-              width: 10,
-              height: 1,
-              background: "#d0c0e8",
-              marginTop: 11,
-            }}
-          />
-
-          <WorkflowStep
-            label="In Review"
-          />
-
-          <div
-            style={{
-              width: 10,
-              height: 1,
-              background: "#d0c0e8",
-              marginTop: 11,
-            }}
-          />
-
-          <WorkflowStep
-            label="Approved"
-          />
-
-          <div
-            style={{
-              width: 10,
-              height: 1,
-              background: "#d0c0e8",
-              marginTop: 11,
-            }}
-          />
-
-          <WorkflowStep
-            label="Completed"
-            active
-          />
+              {index < steps.length - 1 && (
+                <div
+                  style={{
+                    width: 10,
+                    height: 1,
+                    background: "#d0c0e8",
+                    marginTop: 11,
+                  }}
+                />
+              )}
+            </React.Fragment>
+          ))}
         </div>
 
         <div
@@ -341,7 +300,9 @@ const WorkflowCard: React.FC = () => {
   );
 };
 
-const ProductivityCard: React.FC = () => {
+const ProductivityCard: React.FC<{
+  productivity: HumanSyncProps["workspace"]["productivity"];
+}> = ({ productivity }) => {
   return (
     <GlassCard
       startFrame={130}
@@ -388,7 +349,7 @@ const ProductivityCard: React.FC = () => {
                 fontWeight: 700,
               }}
             >
-              +15%
+              {productivity.efficiency}
             </span>
           </div>
 
@@ -431,7 +392,7 @@ const ProductivityCard: React.FC = () => {
                 color: "#333",
               }}
             >
-              92%
+              {productivity.completion}
             </span>
           </div>
 
@@ -477,7 +438,7 @@ const ProductivityCard: React.FC = () => {
               color: "#222",
             }}
           >
-            1.6 h
+            {productivity.responseTime}
           </strong>
         </div>
 
@@ -501,15 +462,10 @@ const ProductivityCard: React.FC = () => {
 const ConnectionLines: React.FC = () => {
   const frame = useCurrentFrame();
 
-  const opacity = interpolate(
-    frame,
-    [80, 115],
-    [0, 1],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
+  const opacity = interpolate(frame, [80, 115], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
   return (
     <svg
@@ -544,41 +500,24 @@ const ConnectionLines: React.FC = () => {
         strokeWidth="2"
       />
 
-      <circle
-        cx="520"
-        cy="105"
-        r="4"
-        fill="#7a4ee8"
-      />
+      <circle cx="520" cy="105" r="4" fill="#7a4ee8" />
 
-      <circle
-        cx="555"
-        cy="280"
-        r="4"
-        fill="#7a4ee8"
-      />
+      <circle cx="555" cy="280" r="4" fill="#7a4ee8" />
     </svg>
   );
 };
 
-export const Scene03Workspace: React.FC = () => {
+export const Scene03Workspace: React.FC<{
+  workspace: HumanSyncProps["workspace"];
+}> = ({ workspace }) => {
   const frame = useCurrentFrame();
 
-  const textProgress = interpolate(
-    frame,
-    [0, 30],
-    [0, 1],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
+  const textProgress = interpolate(frame, [0, 30], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
-  const textY = interpolate(
-    textProgress,
-    [0, 1],
-    [25, 0],
-  );
+  const textY = interpolate(textProgress, [0, 1], [25, 0]);
 
   return (
     <AbsoluteFill>
@@ -618,8 +557,7 @@ export const Scene03Workspace: React.FC = () => {
             maxWidth: 210,
           }}
         >
-          one intelligent workspace built to
-          connect teams, workflows, and
+          one intelligent workspace built to connect teams, workflows, and
           productivity in real time.
         </div>
       </div>
@@ -644,11 +582,11 @@ export const Scene03Workspace: React.FC = () => {
 
       {/* Product UI */}
 
-      <TeamConnectedCard />
+      <TeamConnectedCard members={workspace.teamMembers} />
 
-      <WorkflowCard />
+      <WorkflowCard steps={workspace.workflowSteps} />
 
-      <ProductivityCard />
+      <ProductivityCard productivity={workspace.productivity} />
 
       {/* Floating product icon */}
 
@@ -660,28 +598,16 @@ export const Scene03Workspace: React.FC = () => {
           width: 35,
           height: 35,
           borderRadius: 10,
-          background:
-            "linear-gradient(135deg, #7647e9, #9b5ce8)",
-          boxShadow:
-            "0 10px 25px rgba(100,40,150,0.18)",
-          opacity: interpolate(
-            frame,
-            [70, 90],
-            [0, 1],
-            {
-              extrapolateLeft: "clamp",
-              extrapolateRight: "clamp",
-            },
-          ),
-          transform: `scale(${interpolate(
-            frame,
-            [70, 90],
-            [0.6, 1],
-            {
-              extrapolateLeft: "clamp",
-              extrapolateRight: "clamp",
-            },
-          )})`,
+          background: "linear-gradient(135deg, #7647e9, #9b5ce8)",
+          boxShadow: "0 10px 25px rgba(100,40,150,0.18)",
+          opacity: interpolate(frame, [70, 90], [0, 1], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          }),
+          transform: `scale(${interpolate(frame, [70, 90], [0.6, 1], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          })})`,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

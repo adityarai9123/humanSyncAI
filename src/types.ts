@@ -17,6 +17,22 @@ export type HumanSyncProps = {
   workspace: {
     title: string;
     description: string;
+
+    teamMembers: {
+      name: string;
+      role: string;
+    }[];
+
+    workflowSteps: {
+      label: string;
+      active?: boolean;
+    }[];
+
+    productivity: {
+      efficiency: string;
+      completion: string;
+      responseTime: string;
+    };
   };
 
   collaboration: {
