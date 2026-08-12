@@ -2,13 +2,14 @@ import React from "react";
 import { AbsoluteFill } from "remotion";
 
 import { Background } from "../components/Background";
-import { AnimatedText } from "../components/AnimatedText";
 import { GlassCard } from "../components/GlassCard";
-
 import { HumanSyncLogo } from "../components/HumanSyncLogo";
+import { KineticText } from "../components/KineticText_temp";
 import { HumanSyncProps } from "../types";
 
-const Avatar: React.FC<{ letter: string }> = ({ letter }) => {
+const Avatar: React.FC<{ letter: string }> = ({
+  letter,
+}) => {
   return (
     <div
       style={{
@@ -38,75 +39,106 @@ export const Scene01Intro: React.FC<{
     <AbsoluteFill>
       <Background />
 
-      <HumanSyncLogo size={36} />
+      {/* =================================
+          HUMAN SYNC LOGO — TOP LEFT
+      ================================== */}
 
-      {/* =========================
-          LEFT SIDE — HEADLINE
-      ========================== */}
+      <div
+        style={{
+          position: "absolute",
+          left: 42,
+          top: 18,
+          zIndex: 30,
+        }}
+      >
+        <HumanSyncLogo size={23} />
+      </div>
 
-      <AnimatedText
-        text={intro.title}
-        startFrame={5}
-        fontSize={40}
-        fontWeight={500}
-        top={105}
-        left={42}
-      />
+      {/* =================================
+          MAIN HEADLINE
+      ================================== */}
 
-      <AnimatedText
-        text={intro.highlight}
-        startFrame={12}
-        fontSize={48}
-        fontWeight={600}
-        color="#5424e8"
-        top={157}
-        left={42}
-      />
+      <div
+        style={{
+          position: "absolute",
+          left: 38,
+          top: 110,
+          zIndex: 10,
+        }}
+      >
+        {/* Modern teams */}
 
-      <AnimatedText
-        text={intro.subtitle[0]}
-        startFrame={20}
-        fontSize={25}
-        fontWeight={400}
-        italic
-        color="#333333"
-        top={216}
-        left={42}
-      />
+        <KineticText
+          words={[
+            {
+              text: "Modern",
+              color: "#111111",
+            },
+            {
+              text: "teams",
+              color: "#111111",
+            },
+          ]}
+          startFrame={3}
+          wordDelay={5}
+          duration={7}
+          fontSize={55}
+          fontWeight={450}
+          gap={12}
+          mode="word"
+        />
 
-      <AnimatedText
-        text={intro.subtitle[1]}
-        startFrame={27}
-        fontSize={25}
-        fontWeight={400}
-        italic
-        color="#333333"
-        top={246}
-        left={42}
-      />
+        {/* move fast */}
 
-      {/* =========================
-          RIGHT SIDE — MARKETING
-      ========================== */}
+        <div
+          style={{
+            marginTop: -5,
+          }}
+        >
+          <KineticText
+            words={[
+              {
+                text: "move",
+                color: "#5424D8",
+              },
+              {
+                text: "fast",
+                color: "#5424D8",
+              },
+            ]}
+            startFrame={12}
+            wordDelay={5}
+            duration={7}
+            fontSize={55}
+            fontWeight={450}
+            gap={12}
+            mode="word"
+          />
+        </div>
+      </div>
+
+      {/* =================================
+          MARKETING REVIEW
+      ================================== */}
 
       <GlassCard
-        startFrame={35}
-        left={480}
-        top={45}
-        width={235}
-        height={88}
-        rotate={-2.5}
+        startFrame={30}
+        left={465}
+        top={30}
+        width={245}
+        height={100}
+        rotate={-0.5}
       >
         <div
           style={{
-            padding: "13px 18px",
+            padding: "13px 28px",
             height: "100%",
             boxSizing: "border-box",
           }}
         >
           <div
             style={{
-              fontSize: 18,
+              fontSize: 20,
               fontWeight: 700,
               color: "#111",
               marginBottom: 5,
@@ -117,7 +149,7 @@ export const Scene01Intro: React.FC<{
 
           <div
             style={{
-              fontSize: 13,
+              fontSize: 15,
               color: "#666",
               marginBottom: 8,
             }}
@@ -149,21 +181,21 @@ export const Scene01Intro: React.FC<{
         </div>
       </GlassCard>
 
-      {/* =========================
-          RIGHT SIDE — MEETINGS
-      ========================== */}
+      {/* =================================
+          MEETINGS
+      ================================== */}
 
       <GlassCard
-        startFrame={48}
-        left={455}
-        top={145}
-        width={235}
-        height={82}
-        rotate={1.5}
+        startFrame={43}
+        left={445}
+        top={138}
+        width={245}
+        height={88}
+        rotate={1.8}
       >
         <div
           style={{
-            padding: "15px 18px",
+            padding: "13px 28px",
             boxSizing: "border-box",
           }}
         >
@@ -177,8 +209,8 @@ export const Scene01Intro: React.FC<{
           >
             <span
               style={{
-                fontSize: 18,
-                fontWeight: 700,
+                fontSize: 20,
+                fontWeight: 550,
               }}
             >
               Meetings
@@ -197,8 +229,8 @@ export const Scene01Intro: React.FC<{
           <div
             style={{
               fontSize: 12,
-              fontWeight: 600,
-              color: "#555",
+              fontWeight: 550,
+              color: "#524f4fd5",
             }}
           >
             Team Sync Meeting starts in
@@ -207,8 +239,8 @@ export const Scene01Intro: React.FC<{
           <div
             style={{
               fontSize: 13,
-              color: "#333",
-              marginTop: 2,
+              color: "#080707cf",
+              marginTop: 1,
             }}
           >
             10 min
@@ -216,29 +248,29 @@ export const Scene01Intro: React.FC<{
         </div>
       </GlassCard>
 
-      {/* =========================
-          RIGHT SIDE — PROJECT
-      ========================== */}
+      {/* =================================
+          PROJECT KICKOFF
+      ================================== */}
 
       <GlassCard
-        startFrame={60}
-        left={390}
-        top={260}
-        width={305}
-        height={120}
-        rotate={-3.5}
+        startFrame={58}
+        left={305}
+        top={285}
+        width={395}
+        height={155}
+        rotate={-1.5}
       >
         <div
           style={{
-            padding: "20px 22px",
+            padding: "22px 60px",
             boxSizing: "border-box",
           }}
         >
           <div
             style={{
-              fontSize: 25,
-              fontWeight: 700,
-              color: "#111",
+              fontSize: 38,
+              fontWeight: 550,
+              color: "#080707",
             }}
           >
             Project Kickoff
@@ -246,8 +278,8 @@ export const Scene01Intro: React.FC<{
 
           <div
             style={{
-              marginTop: 6,
-              fontSize: 16,
+              marginTop: 4,
+              fontSize: 28,
               color: "#666",
             }}
           >
@@ -255,13 +287,14 @@ export const Scene01Intro: React.FC<{
           </div>
 
           <div
-            style={{
-              marginTop: 20,
-              width: "100%",
-              height: 5,
-              borderRadius: 5,
-              background: "rgba(100, 60, 160, 0.12)",
-            }}
+            // style={{
+            //   marginTop: 20,
+            //   width: "100%",
+            //   height: 5,
+            //   borderRadius: 5,
+            //   background:
+            //     "rgba(100, 60, 160, 0.12)",
+            // }}
           >
             <div
               style={{
@@ -274,6 +307,57 @@ export const Scene01Intro: React.FC<{
           </div>
         </div>
       </GlassCard>
+
+      {/* =================================
+          SUBTITLE — CHARACTER LEVEL
+      ================================== */}
+
+      <div
+        style={{
+          position: "absolute",
+          left: 38,
+          top: 220,
+          zIndex: 10,
+        }}
+      >
+        <KineticText
+          words={[
+            {
+              text: "but workflow still",
+            },
+          ]}
+          startFrame={68}
+          duration={12}
+          characterDelay={0.5}
+          fontSize={28}
+          fontWeight={350}
+          letterSpacing={-0.2}
+          mode="character"
+          blur
+        />
+
+        <div
+          style={{
+            marginTop: 0,
+          }}
+        >
+          <KineticText
+            words={[
+              {
+                text: "feels disconnected",
+              },
+            ]}
+            startFrame={82}
+            duration={4}
+            characterDelay={0.5}
+            fontSize={28}
+            fontWeight={350}
+            letterSpacing={-0.2}
+            mode="character"
+            blur
+          />
+        </div>
+      </div>
     </AbsoluteFill>
   );
 };

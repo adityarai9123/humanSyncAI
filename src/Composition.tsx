@@ -1,12 +1,10 @@
 import { AbsoluteFill, Composition, Sequence } from "remotion";
-
 import { Scene01Intro } from "./scenes/Scene01Intro";
 import { Scene02Systems } from "./scenes/Scene02Systems";
 import { Scene03Workspace } from "./scenes/Scene03Workspace";
 import { Scene04Collaboration } from "./scenes/Scene04Collaboration";
 import { Scene05Workflow } from "./scenes/Scene05Workflow";
 import { Scene06Outro } from "./scenes/Scene06Outro";
-
 import { HumanSyncProps } from "./types";
 
 export const MyComposition = () => {
@@ -25,32 +23,32 @@ export const MyComposition = () => {
 
 export const MyComponent: React.FC<HumanSyncProps> = (props) => {
   return (
-    <AbsoluteFill>
+    <AbsoluteFill
+      style={{
+        rotate: "-0.1deg",
+        scale: 1.001,
+      }}
+    >
       {/* Scene 1 */}
-      <Sequence from={0} durationInFrames={175}>
+      <Sequence from={0} durationInFrames={120}>
         <Scene01Intro intro={props.intro} />
       </Sequence>
-
       {/* Scene 2 */}
-      <Sequence from={175} durationInFrames={115}>
+      <Sequence from={120} durationInFrames={170}>
         <Scene02Systems systems={props.systems} />
       </Sequence>
-
       {/* Scene 3 */}
       <Sequence from={290} durationInFrames={185}>
         <Scene03Workspace workspace={props.workspace} />
       </Sequence>
-
       {/* Scene 4 */}
       <Sequence from={475} durationInFrames={125}>
         <Scene04Collaboration />
       </Sequence>
-
       {/* Scene 5 */}
       <Sequence from={600} durationInFrames={125}>
         <Scene05Workflow />
       </Sequence>
-
       {/* Scene 6 */}
       <Sequence from={725} durationInFrames={25}>
         <Scene06Outro />
